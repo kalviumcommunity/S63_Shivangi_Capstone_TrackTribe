@@ -1,7 +1,7 @@
 #TrackTribe 
 **Not your average party app.**
 
-Tracktribe reimagines how people throw, join, and discover parties — blending smooth access control, dynamic music vibes, and local discovery into one sleek, powerful experience. Whether you're hosting a private celebration or looking to crash the best parties in town, SUPERCRAZYCAP has your back.
+TrackTribe reimagines how people throw, join, and discover parties — blending smooth access control, dynamic music vibes, and local discovery into one sleek, powerful experience. Whether you're hosting a private celebration or looking to crash the best parties in town, SUPERCRAZYCAP has your back.
 
 [![Built with React.js](https://img.shields.io/badge/Built%20with-React.js-61DAFB?logo=react)](https://reactjs.org/)
 [![TailwindCSS](https://img.shields.io/badge/Styled%20with-TailwindCSS-blue?logo=tailwindcss)](https://tailwindcss.com/)
