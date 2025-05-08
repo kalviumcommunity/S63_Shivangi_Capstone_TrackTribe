@@ -133,7 +133,7 @@ const LandingPage = () => {
           color: randomColor,
         });
 
-        ctx.fillStyle = `${randomColor} ${opacity})`;
+        ctx.fillStyle = `${randomColor}${opacity})`;
         ctx.beginPath();
         ctx.ellipse(currX + distortionX, currY + distortionY, size, size, 0, 0, Math.PI * 2);
         ctx.fill();
