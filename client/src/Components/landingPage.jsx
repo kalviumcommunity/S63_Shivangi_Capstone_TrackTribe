@@ -153,7 +153,7 @@ const LandingPage = () => {
         const pulse = Math.sin((currentTime - circle.time) / circle.pulseSpeed) * 30 + 20;
         // ensure that pulse is never negative, set minimum to 1
         const nonNegativePulse = Math.max(1, pulse);
-        ctx.fillStyle = `${circle.color} ${circle.opacity})`;
+        ctx.fillStyle = `${circle.color}${circle.opacity})`;
         ctx.beginPath();
         // use nonNegativePulse instead of pulse
         ctx.ellipse(circle.x, circle.y, nonNegativePulse, nonNegativePulse, 0, 0, Math.PI * 2);
