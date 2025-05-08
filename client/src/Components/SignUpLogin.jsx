@@ -60,7 +60,7 @@ const SignUpLogin = () => {
     } finally {
       setLoading(false);
     }
-  };;
+  };
 
   // ... existing handleChange and handleSubmit functions ...
 
