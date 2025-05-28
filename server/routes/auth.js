@@ -8,7 +8,7 @@ const User = require('../models/User.Model');
 router.post('/signup', async (req, res) => {
   try {
     const { fullName, email, password } = req.body;
-    //Database Read and write Implemented
+    //Database Read Implemented
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -23,7 +23,7 @@ router.post('/signup', async (req, res) => {
       email,
       password: hashedPassword
     });
-
+    //Database write implemented
     await user.save();
 
     // Generate token
