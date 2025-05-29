@@ -1,6 +1,7 @@
-
 import React, { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
+import SignInWithGoogle from './SignInWithGoogle';
+import SignUpWithGoogle from './SignUpWithGoogle';
 
 const SignUpLogin = () => {
   const [mode, setMode] = useState('signin');
@@ -12,7 +13,6 @@ const SignUpLogin = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  // Add these missing functions
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -25,7 +25,6 @@ const SignUpLogin = () => {
     setLoading(true);
   
     try {
-      // Determine endpoint based on mode
       const endpoint = mode === 'signup' 
         ? 'http://localhost:6969/api/auth/signup'
         : 'http://localhost:6969/api/auth/login';
@@ -42,42 +41,32 @@ const SignUpLogin = () => {
   
       if (response.ok) {
         setSuccess(true);
-        // Store token in localStorage
         localStorage.setItem('token', data.token);
         console.log(`${mode === 'signup' ? 'Signup' : 'Login'} successful:`, data);
         
-        // Reset after success
         setTimeout(() => {
           setSuccess(false);
-          // Navigate to dashboard or home page
         }, 2000);
       } else {
         throw new Error(data.message || 'Authentication failed');
       }
     } catch (error) {
       console.error('Auth error:', error);
-      // Add error handling UI here
     } finally {
       setLoading(false);
     }
   };
 
-  // ... existing handleChange and handleSubmit functions ...
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-900 via-black to-pink-900">
       <div className="relative w-full max-w-md p-8">
-        {/* Enhanced card with built-in animations */}
         <div className="relative bg-black bg-opacity-70 backdrop-blur-md rounded-xl p-8 shadow-xl border border-cyan-500 border-opacity-30 group hover:shadow-cyan-500/20 transition-all duration-300">
-          {/* Animated glow using opacity transitions */}
           <div className={`absolute -inset-0.5 bg-gradient-to-r from-pink-600 via-purple-500 to-cyan-500 rounded-xl blur-md transition-opacity duration-500
             ${loading ? 'opacity-40 animate-pulse' : 'opacity-20 group-hover:opacity-30'}
             ${success ? 'opacity-60 via-green-500' : ''}`}
           />
 
-          {/* Content container with relative positioning */}
           <div className="relative">
-            {/* Animated title */}
             <h2 className={`text-3xl font-bold text-center mb-8 transition-all duration-500
               ${success ? 'text-green-400 scale-105' : 'text-indigo-400'}
               hover:text-opacity-90`}
@@ -85,7 +74,6 @@ const SignUpLogin = () => {
               {success ? 'Success!' : mode === 'signup' ? 'Create Account' : 'Welcome Back'}
             </h2>
 
-            {/* Toggle buttons with enhanced hover effects */}
             <div className="flex justify-center gap-4 mb-8">
               <button
                 onClick={() => setMode('signin')}
@@ -111,14 +99,12 @@ const SignUpLogin = () => {
               </button>
             </div>
 
-            {/* Success message with animation */}
             {success && (
               <div className="text-green-400 text-sm text-center mb-4 bg-green-900/20 py-2 px-3 rounded-md border border-green-800 animate-pulse">
                 {mode === 'signup' ? 'Account created successfully!' : 'Signed in successfully!'}
               </div>
             )}
 
-            {/* Form with enhanced input styles */}
             <form onSubmit={handleSubmit} className="space-y-4">
               {mode === 'signup' && (
                 <input
@@ -199,6 +185,11 @@ const SignUpLogin = () => {
                 <FcGoogle size={20} />
                 <span>Sign {mode === 'signup' ? 'up' : 'in'} with Google</span>
               </button>
+              {mode === 'signup' ? (
+                <SignUpWithGoogle disabled={loading || success} />
+              ) : (
+                <SignInWithGoogle disabled={loading || success} />
+              )}
             </form>
           </div>
         </div>

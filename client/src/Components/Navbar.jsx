@@ -43,8 +43,7 @@ const Navbar = () => {
   ], []);
 
   // Enhanced particle system with more vibrant colors and optimized for performance
-  // Using uppercase prefix to match the ESLint rule for allowed unused vars
-  const CREATE_PARTICLE = useCallback((x, y, color) => {
+  const createParticle = useCallback((x, y, color) => {
     return {
       x,
       y,
