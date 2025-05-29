@@ -133,7 +133,7 @@ const LandingPage = () => {
           color: randomColor,
         });
 
-        ctx.fillStyle = `${randomColor}${opacity})`;
+        ctx.fillStyle = `${randomColor} ${opacity})`;
         ctx.beginPath();
         ctx.ellipse(currX + distortionX, currY + distortionY, size, size, 0, 0, Math.PI * 2);
         ctx.fill();
@@ -151,12 +151,9 @@ const LandingPage = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       circlesRef.current.forEach((circle) => {
         const pulse = Math.sin((currentTime - circle.time) / circle.pulseSpeed) * 30 + 20;
-        // ensure that pulse is never negative, set minimum to 1
-        const nonNegativePulse = Math.max(1, pulse);
-        ctx.fillStyle = `${circle.color}${circle.opacity})`;
+        ctx.fillStyle = `${circle.color} ${circle.opacity})`;
         ctx.beginPath();
-        // use nonNegativePulse instead of pulse
-        ctx.ellipse(circle.x, circle.y, nonNegativePulse, nonNegativePulse, 0, 0, Math.PI * 2);
+        ctx.ellipse(circle.x, circle.y, pulse, pulse, 0, 0, Math.PI * 2);
         ctx.fill();
       });
     };

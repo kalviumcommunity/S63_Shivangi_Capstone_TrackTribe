@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User.Model');
 // Post Route
-
 router.post('/signup', async (req, res) => {
   try {
     const { fullName, email, password } = req.body;
@@ -26,7 +25,7 @@ router.post('/signup', async (req, res) => {
     //Database write implemented
     await user.save();
 
-    // Generate token
+   // Generating JWT token for sign up
     const token = jwt.sign(
       { userId: user._id },
       process.env.JWT_SECRET,
@@ -65,7 +64,7 @@ router.post('/login', async (req, res) => {
     if (!isValidPassword) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
-// JWT
+    // Generate JWT token for sign in
     const token = jwt.sign(
       { userId: user._id },
       process.env.JWT_SECRET,
