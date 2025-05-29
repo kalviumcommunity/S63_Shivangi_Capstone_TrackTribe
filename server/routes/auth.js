@@ -25,7 +25,7 @@ router.post('/signup', async (req, res) => {
 
     await user.save();
 
-   // Generating JWT token for signing up
+   // Generating JWT token for sign up
     const token = jwt.sign(
       { userId: user._id },
       process.env.JWT_SECRET,
@@ -64,7 +64,7 @@ router.post('/login', async (req, res) => {
     if (!isValidPassword) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
-    // Generate JWT token for signing in
+    // Generate JWT token for sign in
     const token = jwt.sign(
       { userId: user._id },
       process.env.JWT_SECRET,
