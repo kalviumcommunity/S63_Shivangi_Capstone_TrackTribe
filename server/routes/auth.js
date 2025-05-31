@@ -4,11 +4,10 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User.Model');
 // Post Route
-
 router.post('/signup', async (req, res) => {
   try {
     const { fullName, email, password } = req.body;
-    //Database Read and write Implemented
+    //Database Read Implemented
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -23,10 +22,10 @@ router.post('/signup', async (req, res) => {
       email,
       password: hashedPassword
     });
-
+    //Database write implemented
     await user.save();
 
-    // Generate token
+   // Generating JWT token for sign up
     const token = jwt.sign(
       { userId: user._id },
       process.env.JWT_SECRET,
@@ -52,7 +51,7 @@ router.post('/signup', async (req, res) => {
 // Login Route
 router.post('/login', async (req, res) => {
 
-  // Username password authentication
+  // implemented username password authentication
   try {
     const { email, password } = req.body;
 
@@ -65,7 +64,7 @@ router.post('/login', async (req, res) => {
     if (!isValidPassword) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
-// JWT
+    // Generate JWT token for sign in
     const token = jwt.sign(
       { userId: user._id },
       process.env.JWT_SECRET,
@@ -86,6 +85,11 @@ router.post('/login', async (req, res) => {
     console.error('Login error:', error);
     res.status(500).json({ message: 'Error logging in' });
   }
+});
+
+// Basic GET route for testing
+router.get('/test', (req, res) => {
+  res.status(200).json({ message: 'Auth route is working' });
 });
 
 module.exports = router;
