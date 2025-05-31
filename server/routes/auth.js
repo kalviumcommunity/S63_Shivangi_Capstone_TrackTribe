@@ -87,4 +87,9 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// Basic GET route for testing
+router.get('/test', (req, res) => {
+  res.status(200).json({ message: 'Auth route is working' });
+});
+
 module.exports = router;
